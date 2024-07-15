@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+</head>
+
+<body>
+    <div id="counter"></div>
+
+    <script>
+        async function fetchStartTime() {
+            try {
+                const response = await fetch('/api/countdown/start-time');
+                const data = await response.json();
+                return data.startTime;
+            } catch (error) {
+                console.error('Error fetching start time:', error);
+                return Date.now();
+            }
+        }
+
+        async function startCountdown() {
+            const startTime = await fetchStartTime();
+            const initialCount = 314;
+            const finalCount = 14;
+            const duration = 10 * 60 * 1000;
+
+            const decrementAmount = (initialCount - finalCount) / duration;
+
+            function updateCounter() {
+                const elapsedTime = Date.now() - startTime;
+                const currentCount = initialCount - Math.round(elapsedTime * decrementAmount);
+
+                if (currentCount >= finalCount) {
+                    document.getElementById('counter').textContent = currentCount;
+                    setTimeout(updateCounter, 1000);
+                } else {
+                    document.getElementById('counter').textContent = finalCount;
+                }
+            }
+
+            updateCounter();
+        }
+
+        startCountdown();
+    </script>
+</body>
+
+</html>
