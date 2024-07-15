@@ -1,34 +1,24 @@
-var initialCount = 314;
-var finalCount = 14;
-var duration = 10 * 60 * 1000;
+const express = require("express");
+const http = require("http");
+const path = require("path");
+const app = express();
+const server = http.createServer(app);
 
-function startCountdown() {
-  var storedStartTime = localStorage.getItem("startTime");
-  var startTime;
-  if (storedStartTime) {
-    startTime = parseInt(storedStartTime, 10);
-  } else {
-    startTime = Date.now();
-    localStorage.setItem("startTime", startTime);
-  }
+let startTime = Date.now(); // Initial start time
 
-  var decrementAmount = (initialCount - finalCount) / duration;
+// Route to fetch countdown start time
+app.get("/api/countdown/start-time", (req, res) => {
+  res.json({ startTime });
+});
 
-  function updateCounter() {
-    var elapsedTime = Date.now() - startTime;
-    var currentCount = initialCount - Math.round(elapsedTime * decrementAmount);
+// Serve static files (e.g., HTML, CSS, client-side JS)
+app.use(express.static(path.join(__dirname, "public")));
 
-    if (currentCount >= finalCount) {
-      document.getElementById("counter").textContent = currentCount;
-      setTimeout(updateCounter, 1000);
-    } else {
-      document.getElementById("counter").textContent = finalCount;
-      localStorage.setItem("startTime", Date.now());
-      startCountdown();
-    }
-  }
+// Serve the index.html file for all other routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
-  updateCounter();
-}
-
-startCountdown();
+server.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
