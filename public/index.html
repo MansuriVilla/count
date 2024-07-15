@@ -13,10 +13,16 @@
     <script>
         async function fetchStartTime() {
             try {
-                // Replace 'your-deployed-server-url' with the actual URL of your deployed server
-                const response = await fetch('https://count-97a8.vercel.app');
-                const data = await response.json();
-                return data.startTime;
+                let startTime = localStorage.getItem("startTime");
+
+                if (!startTime) {
+                    const response = await fetch('/api/countdown/start-time');
+                    const data = await response.json();
+                    startTime = data.startTime;
+                    localStorage.setItem("startTime", startTime);
+                }
+
+                return startTime;
             } catch (error) {
                 console.error('Error fetching start time:', error);
                 return Date.now(); // Fallback to current time
