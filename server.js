@@ -19,6 +19,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-server.listen(3000, () => {
-  console.log("Server running on port 3000");
+const port = process.env.PORT || 3000; // Use the port assigned by Render
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
