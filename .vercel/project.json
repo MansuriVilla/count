@@ -1,1 +1,17 @@
-{"projectId":"prj_fK2WJkGixu9WHq30ViLDHnqeYP1j","orgId":"team_k1nKrzbE1fD1HJr2VtdRJcPN"}
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ],
+  "projectId": "prj_fK2WJkGixu9WHq30ViLDHnqeYP1j",
+  "orgId": "team_k1nKrzbE1fD1HJr2VtdRJcPN"
+}
