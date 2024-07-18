@@ -1,10 +1,14 @@
 const express = require("express");
 const http = require("http");
+const cors = require("cors");
 const path = require("path");
 const app = express();
 const server = http.createServer(app);
 
 let startTime = Date.now(); // Initialize the start time once when the server starts
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Route to fetch countdown start time
 app.get("/countdown/start-time", (req, res) => {
