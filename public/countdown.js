@@ -16,7 +16,7 @@
     const startTime = await fetchStartTime();
     const initialCount = 314;
     const finalCount = 14;
-    const duration = 10 * 60 * 1000; // 10 minutes in milliseconds
+    const duration = 600 * 60 * 1000; // 10 minutes in milliseconds
 
     const decrementAmount = (initialCount - finalCount) / duration;
 
