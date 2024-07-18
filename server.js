@@ -7,7 +7,7 @@ const server = http.createServer(app);
 let startTime = Date.now(); // Initialize the start time once when the server starts
 
 // Route to fetch countdown start time
-app.get("/api/countdown/start-time", (req, res) => {
+app.get("/countdown/start-time", (req, res) => {
   res.json({ startTime });
 });
 
