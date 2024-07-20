@@ -1,4 +1,4 @@
-var initialCount = 314;
+var initialCount = 330;
 var finalCount = 14;
 var duration = 10 * 60 * 1000;
 
