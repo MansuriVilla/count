@@ -16,7 +16,7 @@
     const startTime = await fetchStartTime();
     const initialCount = 330;
     const finalCount = 14;
-    const duration = 600 * 60 * 1000; // 10 minutes in milliseconds
+    const duration = 600 * 60 * 1000;
 
     const decrementAmount = (initialCount - finalCount) / duration;
 
@@ -27,7 +27,7 @@
 
       if (currentCount >= finalCount) {
         document.getElementById("counter").textContent = currentCount;
-        setTimeout(updateCounter, 1000); // Update every second
+        setTimeout(updateCounter, 10000);
       } else {
         document.getElementById("counter").textContent = finalCount;
       }
